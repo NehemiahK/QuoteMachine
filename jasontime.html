@@ -26,7 +26,7 @@ $("#clicked").on("click", function(){
         console.log(obj2);
 
         $("#quote").html(obj1);
-        $("#author").html(obj2);
+        $("#author").html("- " + obj2);
 
   });
 });
@@ -41,6 +41,9 @@ $("#clicked").on("click", function(){
       align-items: center;
       flex-flow: wrap;
       word-wrap: normal;
+      max-width: 700px;
+      padding: 10px;
+      max-height: 100px;
 
   }
 
