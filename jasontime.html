@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>JSON TEST</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <!--<link href="assets/css/bootstrap-responsive.css" rel="stylesheet">-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ <link href='https://fonts.googleapis.com/css?family=Shadows Into Light' rel='stylesheet'>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script>
+$(document).ready(function() {
+
+
+$("#clicked").on("click", function(){
+
+    $.getJSON("https://talaikis.com/api/quotes/random/", function(json) {
+
+        var obj1 = json.quote;
+        var obj2 = json.author;
+
+        console.log(obj1);
+        console.log(obj2);
+
+        $("#quote").html(obj1);
+        $("#author").html(obj2);
+
+  });
+});
+});
+
+</script>
+
+  <style>
+  #first{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-flow: wrap;
+      word-wrap: normal;
+
+  }
+
+  #second{
+    text-align: center;
+    margin-top: 100px;
+
+}
+#author{
+
+}
+
+  html,body {
+   font-family: 'Shadows Into Light';
+   font-size: 22px;
+   color: black;
+   background-color: green;
+   text-align: center;
+
+}
+
+  </style>
+</head>
+<body>
+
+<h1>Inspirational Quote Generator</h1>
+
+<div class ="container" id="first">
+    <div>
+    <p id="quote"></p>
+</div>
+
+<div class="container">
+    <p id="author"></p>
+</div>
+</div>
+
+<div class="container" >
+<div id ="second">
+    <button id=clicked>Quote</button>
+</div>
+</div>
+
+
+
+</body>
+</html>
