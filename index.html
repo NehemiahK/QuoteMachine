@@ -13,23 +13,30 @@
 
 <script>
 $(document).ready(function() {
-
+    var obj1;
+    var obj2;
+    var h= "https://twitter.com/intent/tweet?text=" ;
 
 $("#clicked").on("click", function(){
 
     $.getJSON("https://talaikis.com/api/quotes/random/", function(json) {
 
-        var obj1 = json.quote;
-        var obj2 = json.author;
-
-        console.log(obj1);
-        console.log(obj2);
+        obj1 = json.quote;
+        obj2 = json.author;
 
         $("#quote").html(obj1);
         $("#author").html("- " + obj2);
+  });
+
+$("#tweet").on("click", function(){
+
+    if (obj1.length + obj2.length >137){
+        obj1 = obj1.slice(0,130 - obj2.length) + "...";
+    }
+    window.open(h + "''" + obj1 + "''" + "- " + obj2)
+  });
 
   });
-});
 });
 
 </script>
@@ -43,25 +50,35 @@ $("#clicked").on("click", function(){
       word-wrap: normal;
       max-width: 700px;
       padding: 10px;
-      max-height: 100px;
+      max-height: 200px;
+      margin-top: 40px;
 
   }
 
   #second{
     text-align: center;
-    margin-top: 100px;
-
+    margin-top: 20px;
 }
-#author{
-
+#clicked{
+    color: blue;
+    background-color: transparent;
+    border-color: transparent;
+    border-radius: 20%;
+}
+#tweet{
+    color: blue;
+    background-color: transparent;
+    border-color: transparent;
+    border-radius: 20%;
 }
 
   html,body {
    font-family: 'Shadows Into Light';
-   font-size: 22px;
+   font-size: 30px;
    color: black;
-   background-color: green;
+   background-color: #404444;
    text-align: center;
+   font-weight: bold;
 
 }
 
@@ -70,24 +87,21 @@ $("#clicked").on("click", function(){
 <body>
 
 <h1>Inspirational Quote Generator</h1>
-
-<div class ="container" id="first">
-    <div>
-    <p id="quote"></p>
-</div>
-
-<div class="container">
-    <p id="author"></p>
-</div>
-</div>
-
 <div class="container" >
 <div id ="second">
-    <button id=clicked>Quote</button>
+
+    <button id="clicked"><i class="fa fa-refresh" aria-hidden="true"></i></button>
+    <button id="tweet"><i class="fa fa-twitter" aria-hidden="true"></i></button>
 </div>
 </div>
 
+<div class ="container" id="first">
 
+    <p id="quote"></p>
+<br>
+    <h3 id="author"></h3>
+
+</div>
 
 </body>
 </html>
